@@ -7,7 +7,11 @@
 // Converts a fraction formatted as X/Y to eighths
 int duration(string fraction)
 {
-    // TODO
+    int numer = atoi(&fraction[0]);
+        int denom = atoi(&fraction[2]);
+
+        int frac = (8/denom) * numer;
+        return frac;
 }
 
 // Calculates frequency (in Hz) of a note
@@ -19,7 +23,15 @@ int frequency(string note)
 // Determines whether a string represents a rest
 bool is_rest(string s)
 {
-    // TODO
+    if  (strcmp(s, "") == 0)
+    //if (strcmp (s, second string) == 0)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 
