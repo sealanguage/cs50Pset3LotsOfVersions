@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <math.h>
 
 
 // get the string
@@ -41,23 +42,60 @@ int main(void)
             // string named note
             // A4 = 440 h
     string fullnote = get_string("write a full note: \n");
+    int octave;
 
     if (strlen(fullnote) == 3)
     {
         char letter = fullnote[0];
         char accidental = fullnote[1];
-        int octave = atoi(&fullnote[2]);
+        octave = atoi(&fullnote[2]);
         printf("%c %c %i", letter, accidental, octave);
 
     }
     if (strlen(fullnote) == 2)
     {
         char letter = fullnote[0];
-        int octave = atoi(&fullnote[1]);
+        octave = atoi(&fullnote[1]);
         printf("%c %i", letter, octave);
-
     }
 
+    float obaseline = 4.00;
+    float basehz = 440.00;
+    int octcount = 0;
+    //float hz;
+
+    if (octave == obaseline)
+    {
+        return 440;
+    }
+    else if (octave > 4)
+    {
+        octcount = octave - 4;
+        printf("%.2f\n", pow(basehz, 2.00));
+        // printf("%.2f\n", pow(10.00, 2.00));
+    }
+    else if (octave < 4)
+    {
+        octcount = 4 - octave;
+    }
+    printf("octave counter = %i\n", octcount);
+
+    // do the math if octave is > 4 -- 440 x 2 for each number more than 4; / 2 for each counter less than 4
+
+
+
+
+    // for (int i = 0; i > obaseline; i++)
+    // {
+
+    //     //multiply A4 by 2 for each additional octave
+    //     octcount++;
+    //     int octhz = basehz * 2;
+    //     return octhz;
+    //     printf("%d", octhz);
+    //     printf("end of hz math\n");
+
+    // }
 
 
 
@@ -72,7 +110,6 @@ int main(void)
 //     // use string comapre (the lines in bday.txt) with the blank line
 
 
-//     // will this work? is \n a single value? or should it be \0?
 //     if  (strcmp(s, "") == 0)
 //     //if (strcmp (s, second string) == 0)
 //     {
