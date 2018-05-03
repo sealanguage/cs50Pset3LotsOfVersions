@@ -1,8 +1,12 @@
 // Helper functions for music
 
 #include <cs50.h>
-
 #include "helpers.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+
 
 // Converts a fraction formatted as X/Y to eighths
 int duration(string fraction)
@@ -18,6 +22,62 @@ int duration(string fraction)
 int frequency(string note)
 {
     // TODO
+    string fullnote = get_string("write a full note: \n");
+    int octave;
+    note = fullnote;
+
+    if (strlen(fullnote) == 3)
+    {
+        char letter = fullnote[0];
+        char accidental = fullnote[1];
+        octave = atoi(&fullnote[2]);
+        printf("%c %c %i\n", letter, accidental, octave);
+        printf("3 octave = %i\n", octave);
+        printf("3 letter = %c\n", letter);
+
+    }
+    if (strlen(fullnote) == 2)
+    {
+        char letter = fullnote[0];
+        octave = atoi(&fullnote[1]);
+        printf("%c %i\n", letter, octave);
+        printf("2 octave = %i\n", octave);
+        printf("2 letter = %c\n", letter);
+    }
+
+     // find the hz value for each octave
+    // float obaseline = 4.00;
+    float basehz = 440.00;
+    int octcount = 0;
+    float hz;
+
+    if (octave == 4)
+    {
+        return 440;
+        printf("octave of 4 = 440");
+    }
+
+     // do the math if octave is > 4 -- 440 x 2 for each number more than 4; / 2 for each counter less than 4
+    // gets octave and letter, does math to get setps from A4, does not calculate pow of 2 to 440.
+
+    else if (octave > 4)
+    {
+        octcount = (octave - 4);
+        hz = 440 * pow(2, octcount);
+        printf("Hertz is %.2f\n", hz);
+
+        printf("octcount value = %i\n", octcount);
+        printf("basehz = %.2f\n", basehz);
+
+    }
+    else if (octave < 4)
+    {
+        octcount = 4 - octave;
+        hz = 440 / pow(2, octcount);
+        printf("Hertz is %.2f\n", hz);
+        printf("octave is less than 4\n");
+    }
+
 }
 
 // Determines whether a string represents a rest

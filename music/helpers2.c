@@ -63,42 +63,38 @@ int main(void)
         printf("2 letter = %c\n", letter);
     }
 
-    // find the hz value for each octave
     // float obaseline = 4.00;
     float basehz = 440.00;
     int octcount = 0;
-    float hz;
+    //float hz;
 
     if (octave == 4)
     {
-        printf("octave of 4 = 440");
         return 440;
+        printf("base octave = 4");
     }
-
-     // do the math if octave is > 4 -- 440 x 2 for each number more than 4; / 2 for each counter less than 4
-    // gets octave and letter, does math to get setps from A4, does not calculate pow of 2 to 440.
-
     else if (octave > 4)
     {
-        octcount = (octave - 4);
-        hz = 440 * pow(2, octcount);
-        printf("Hertz is %.2f\n", hz);
+        octcount = (octave - 4) + 1;
 
+        for (int i = 0; i < octcount; i++)
+        {
+            float power = octcount *= basehz;
+            return power;
+            printf("get power loop %f\n", power);
+        }
         printf("octcount value = %i\n", octcount);
         printf("basehz = %.2f\n", basehz);
-
+        printf("octave 5 ^ 2 math: %.2f\n", pow(basehz, octcount));
+        // printf("%.2f\n", pow(10.00, 2.00));
     }
     else if (octave < 4)
     {
         octcount = 4 - octave;
-        hz = 440 / pow(2, octcount);
-        printf("Hertz is %.2f\n", hz);
-        printf("octave is less than 4\n");
     }
+    printf("octave counter = %i\n", octcount);
 
-
-    // for each note, take octave hz x 2 x/12 to get hz; return hz
-
+    // do the math if octave is > 4 -- 440 x 2 for each number more than 4; / 2 for each counter less than 4
 
 
 
