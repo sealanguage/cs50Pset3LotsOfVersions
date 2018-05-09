@@ -53,8 +53,8 @@ int frequency(string note)
 
     if (octave == 4)
     {
-        return 440;
-        printf("octave of 4 = 440");
+        printf("octave of 4 = 440\n");
+        //return 440;
     }
 
      // do the math if octave is > 4 -- 440 x 2 for each number more than 4; / 2 for each counter less than 4
@@ -70,6 +70,8 @@ int frequency(string note)
         printf("basehz = %.2f\n", basehz);
 
     }
+
+    // subtract octave from for to get power of 2 division for lower octave hz values
     else if (octave < 4)
     {
         octcount = 4 - octave;
@@ -77,6 +79,9 @@ int frequency(string note)
         printf("Hertz is %.2f\n", hz);
         printf("octave is less than 4\n");
     }
+
+
+    // for each note, take octave hz x 2 x/12 to get hz; return hz
 
 }
 

@@ -35,13 +35,15 @@
 // Calculates frequency (in Hz) of a note
 // int frequency(string note)
 
+
+
+
 int main(void)
 {
             // TODO
             // input string note A#4 or A4. parse the string into note and octave. figure out where note and where octave is. calculate the frequency in the octave. return frequency
             // string named note
             // A4 = 440 h
-    printf("10 power 2 %.2f\n", pow(float(10.00), float(2.00)));    //  this does not printf
     string fullnote = get_string("write a full note: \n");
     int octave;
 
@@ -64,31 +66,42 @@ int main(void)
         printf("2 letter = %c\n", letter);
     }
 
+    // find the hz value for each octave
     // float obaseline = 4.00;
     float basehz = 440.00;
     int octcount = 0;
-    //float hz;
+    float hz;
 
     if (octave == 4)
     {
-        return 440;
+        printf("octave of 4 = 440\n");
+        //return 440;
     }
+
+     // do the math if octave is > 4 -- 440 x 2 for each number more than 4; / 2 for each counter less than 4
+    // gets octave and letter, does math to get setps from A4, does not calculate pow of 2 to 440.
+
     else if (octave > 4)
     {
+        octcount = (octave - 4);
+        hz = 440 * pow(2, octcount);
+        printf("Hertz is %.2f\n", hz);
 
-        octcount = (octave - 4) + 1;
         printf("octcount value = %i\n", octcount);
         printf("basehz = %.2f\n", basehz);
-        printf("octave 5 ^ 2 math: %.2f\n", round(pow(2, octcount)));
 
     }
     else if (octave < 4)
     {
         octcount = 4 - octave;
+        hz = 440 / pow(2, octcount);
+        printf("Hertz is %.2f\n", hz);
+        printf("octave is less than 4\n");
     }
-    printf("octave counter = %i\n", octcount);
 
-    // do the math if octave is > 4 -- 440 x 2 for each number more than 4; / 2 for each counter less than 4
+
+    // for each note, take octave hz x 2 x/12 to get hz; return hz
+
 
 
 
@@ -104,6 +117,11 @@ int main(void)
     //     printf("end of hz math\n");
 
     // }
+
+
+
+
+
 
 
 
